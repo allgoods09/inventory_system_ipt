@@ -24,14 +24,14 @@ class ProductController extends Controller
             ->latest();
 
         $products   = $query->get();
-        $categories = Category::where('status', 'Active')->orderBy('name')->get();
+        $categories = Category::where('status', 'active')->orderBy('name')->get();
 
         return view('products.index', compact('products', 'categories', 'search', 'catFilter'));
     }
 
     public function create()
     {
-        $categories = Category::where('status', 'Active')->orderBy('name')->get();
+        $categories = Category::where('status', 'active')->orderBy('name')->get();
         return view('products.create', compact('categories'));
     }
 
@@ -45,7 +45,7 @@ class ProductController extends Controller
             'selling_price'  => 'required|numeric|min:0.01',
             'stock_quantity' => 'required|integer|min:0',
             'reorder_level'  => 'required|integer|min:0',
-            'status'         => 'required|in:Active,Inactive',
+            'status'         => 'required|in:active,inactive',
         ], [
             'selling_price.min' => 'Selling price must be greater than 0.',
         ]);
@@ -62,7 +62,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $categories = Category::where('status', 'Active')->orderBy('name')->get();
+        $categories = Category::where('status', 'active')->orderBy('name')->get();
         return view('products.edit', compact('product', 'categories'));
     }
 
@@ -76,7 +76,7 @@ class ProductController extends Controller
             'selling_price'  => 'required|numeric|min:0',
             'stock_quantity' => 'required|integer|min:0',
             'reorder_level'  => 'required|integer|min:0',
-            'status'         => 'required|in:Active,Inactive',
+            'status'         => 'required|in:active,inactive',
         ]);
 
         if (empty($data['category_id'])) {
@@ -90,8 +90,6 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        // Soft-deactivate instead of hard delete, matching original behaviour
-        // $product->update(['status' => 'Inactive']);
         $product->delete();
 
         return redirect()->route('products.index')->with('msg', 'deleted');

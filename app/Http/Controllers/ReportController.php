@@ -37,7 +37,7 @@ class ReportController extends Controller
                 break;
             case 'products':
                 $data = Product::with('category')
-                    ->where('status', 'Active')
+                    ->where('status', 'active')
                     ->orderBy('stock_quantity')
                     ->get();
                 break;
@@ -75,7 +75,7 @@ class ReportController extends Controller
                 break;
             case 'products':
                 $data = Product::with('category')
-                    ->where('status', 'Active')
+                    ->where('status', 'active')
                     ->orderBy('stock_quantity')
                     ->get();
                 break;
@@ -115,7 +115,7 @@ class ReportController extends Controller
                 break;
             case 'products':
                 $data = Product::with('category')
-                    ->where('status', 'Active')
+                    ->where('status', 'active')
                     ->orderBy('stock_quantity')
                     ->get();
                 break;

@@ -25,7 +25,7 @@ class CategoryObserver
         $desc = "Category '{$category->name}' updated";
         $action = 'updated';
 
-        if (isset($changes['status']) && $category->status === 'Inactive') {
+        if (isset($changes['status']) && $category->status === 'inactive') {
             $action = 'deactivated';
             $desc = "Category '{$category->name}' deactivated";
         }

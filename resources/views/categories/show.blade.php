@@ -30,7 +30,7 @@
                             <div>
                                 <label class="text-sm font-medium text-slate-500">Status</label>
                                 <div>
-                                    @if($category->status === 'Active')
+                                    @if($category->status === 'active')
                                         <span class="inline-flex px-3 py-1 text-sm font-bold rounded-full badge-active">Active</span>
                                     @else
                                         <span class="inline-flex px-3 py-1 text-sm font-bold rounded-full badge-inactive">Inactive</span>
@@ -54,7 +54,7 @@
                             </div>
                             <div>
                                 <label class="text-sm font-medium text-slate-500">Active Products</label>
-                                <div class="text-2xl font-bold" style="color:#16b36e;">{{ $category->products()->where('status', 'Active')->count() }}</div>
+                                <div class="text-2xl font-bold" style="color:#16b36e;">{{ $category->products()->where('status', 'active')->count() }}</div>
                             </div>
                         </div>
                     </div>

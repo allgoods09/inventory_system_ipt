@@ -30,7 +30,7 @@ class CategoryController extends Controller
         $request->validate([
             'name'        => 'required|string|max:100',
             'description' => 'nullable|string',
-            'status'      => 'required|in:Active,Inactive',
+            'status'      => 'required|in:active,inactive',
         ]);
 
         Category::create($request->only('name', 'description', 'status'));
@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $request->validate([
             'name'        => 'required|string|max:100',
             'description' => 'nullable|string',
-            'status'      => 'required|in:Active,Inactive',
+            'status'      => 'required|in:active,inactive',
         ]);
 
         $category->update($request->only('name', 'description', 'status'));
@@ -58,8 +58,6 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        // Soft-deactivate, matching original behaviour
-        // $category->update(['status' => 'Inactive']);
         $category->delete();
 
         return redirect()->route('categories.index')->with('msg', 'deleted');

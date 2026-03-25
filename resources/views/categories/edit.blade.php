@@ -29,8 +29,8 @@
                 <div>
                     <label>Status</label>
                     <select name="status">
-                        <option value="Active"   {{ old('status', $category->status) === 'Active'   ? 'selected' : '' }}>Active</option>
-                        <option value="Inactive" {{ old('status', $category->status) === 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                        <option value="active"   {{ old('status', $category->status) === 'active'   ? 'selected' : '' }}>Active</option>
+                        <option value="inactive" {{ old('status', $category->status) === 'inactive' ? 'selected' : '' }}>Inactive</option>
                     </select>
                 </div>
 

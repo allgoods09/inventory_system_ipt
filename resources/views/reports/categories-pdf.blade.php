@@ -111,7 +111,7 @@ tr:nth-child(even) { background: #f8fafc; }
 
 <div class="summary">
     Total: {{ $data->count() }} |
-    Active: {{ $data->where('status', 'Active')->count() }} |
+    Active: {{ $data->where('status', 'active')->count() }} |
     Empty: {{ $data->where('products_count', 0)->count() }}
 </div>
 

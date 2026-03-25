@@ -30,8 +30,8 @@
                 <div>
                     <label>Status</label>
                     <select name="status">
-                        <option value="Active"    {{ old('status', 'Active') === 'Active'   ? 'selected' : '' }}>Active</option>
-                        <option value="Inactive"  {{ old('status') === 'Inactive'           ? 'selected' : '' }}>Inactive</option>
+                        <option value="active"    {{ old('status', 'active') === 'active'   ? 'selected' : '' }}>Active</option>
+                        <option value="inactive"  {{ old('status') === 'inactive'           ? 'selected' : '' }}>Inactive</option>
                     </select>
                 </div>
 

@@ -25,7 +25,7 @@ class ProductObserver
         $desc = "Product '{$product->name}' updated";
         $action = 'updated';
 
-        if (isset($changes['status']) && $product->status === 'Inactive') {
+        if (isset($changes['status']) && $product->status === 'inactive') {
             $action = 'deactivated';
             $desc = "Product '{$product->name}' deactivated";
         }

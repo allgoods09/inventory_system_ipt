@@ -16,7 +16,7 @@
 
     {{-- Flash messages --}}
     @if (session('msg'))
-        <div class="mb-5 flash-{{ session('msg') === 'deleted' ? 'error' : 'success' }}">
+        <div id="flash-message" class="mb-5 flash-{{ session('msg') === 'deleted' ? 'error' : 'success' }}">
             {{ session('msg') === 'saved' ? '✓ Sale recorded successfully.' : (session('msg') === 'updated' ? '✓ Sale updated.' : '✓ Sale deleted and stock restored.') }}
         </div>
     @endif
@@ -94,16 +94,16 @@
                                             Edit
                                         </a>
                                         <form action="{{ route('sales.destroy', $s) }}" method="POST" 
-      onsubmit="return confirm('Delete this sale? Stock will be restored.')" 
-      class="inline">
-    @csrf
-    @method('DELETE')
+                                            onsubmit="return confirm('Delete this sale? Stock will be restored.')" 
+                                            class="inline">
+                                            @csrf
+                                            @method('DELETE')
 
-    <button type="submit"
-        class="btn-danger text-xs font-semibold px-3 py-1.5 rounded-lg transition">
-        Delete
-    </button>
-</form>
+                                            <button type="submit"
+                                                class="btn-danger text-xs font-semibold px-3 py-1.5 rounded-lg transition">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             @endif
@@ -117,4 +117,15 @@
             </table>
         </div>
     </div>
+    <script>
+        setTimeout(() => {
+            const flash = document.getElementById('flash-message');
+            if (flash) {
+                flash.style.transition = "opacity 0.5s ease";
+                flash.style.opacity = "0";
+                
+                setTimeout(() => flash.remove(), 500); // remove after fade
+            }
+        }, 1500); // 1.5 seconds
+    </script>
 </x-app-layout>

@@ -41,7 +41,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="px-2 py-1 text-xs font-semibold 
-                                    @if($category->status === 'Active') bg-green-100 text-green-800 @else bg-slate-100 text-slate-800 @endif
+                                    @if($category->status === 'active') bg-green-100 text-green-800 @else bg-slate-100 text-slate-800 @endif
                                     rounded-full">
                                     {{ $category->status ?? 'N/A' }}
                                 </span>
@@ -67,7 +67,7 @@
                 </div>
                 <div>
                     <div class="text-slate-500">Active Categories</div>
-                    <div class="font-bold text-2xl text-slate-800">{{ $data->where('status', 'Active')->count() }}</div>
+                    <div class="font-bold text-2xl text-slate-800">{{ $data->where('status', 'active')->count() }}</div>
                 </div>
                 <div>
                     <div class="text-slate-500">Empty Categories</div>

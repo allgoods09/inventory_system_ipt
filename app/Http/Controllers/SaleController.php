@@ -33,7 +33,7 @@ class SaleController extends Controller
 
     public function create()
     {
-        $products = Product::where('status', 'Active')
+        $products = Product::where('status', 'active')
             ->where('stock_quantity', '>', 0)
             ->orderBy('name')
             ->get();
@@ -51,7 +51,7 @@ class SaleController extends Controller
 
         $product = Product::findOrFail($data['product_id']);
 
-        if ($product->status !== 'Active') {
+        if ($product->status !== 'active') {
             return back()->withErrors(['product_id' => 'Product must be active.']);
         }
 
@@ -82,7 +82,7 @@ class SaleController extends Controller
     public function edit(Sale $sale)
     {
         $sale->load('product');
-        $products = Product::where('status', 'Active')
+        $products = Product::where('status', 'active')
             ->where('stock_quantity', '>', 0)
             ->orderBy('name')
             ->get();
@@ -93,7 +93,7 @@ class SaleController extends Controller
     {
         $oldQty = $sale->quantity;
         $product = $sale->product;
-        if (!$product || $product->status !== 'Active') {
+        if (!$product || $product->status !== 'active') {
             return back()->withErrors(['product_id' => 'Product must be active.']);
         }
 

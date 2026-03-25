@@ -14,13 +14,13 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $totalProducts   = DB::table('products')->where('status', 'Active')->count();
-    $totalCategories = DB::table('categories')->where('status', 'Active')->count();
+    $totalProducts   = DB::table('products')->where('status', 'active')->count();
+    $totalCategories = DB::table('categories')->where('status', 'active')->count();
     $totalSales      = DB::table('sales')->count();
     $totalRevenue    = DB::table('sales')->sum('total_amount') ?? 0;
     $lowStock        = DB::table('products')
                          ->whereColumn('stock_quantity', '<=', 'reorder_level')
-                         ->where('status', 'Active')
+                         ->where('status', 'active')
                          ->count();
  
     $recentSales = DB::table('sales as s')
@@ -34,7 +34,7 @@ Route::get('/dashboard', function () {
         ->leftJoin('categories as c', 'p.category_id', '=', 'c.id')
         ->select('p.*', 'c.name as category_name')
         ->whereColumn('p.stock_quantity', '<=', 'p.reorder_level')
-        ->where('p.status', 'Active')
+        ->where('p.status', 'active')
         ->limit(5)
         ->get();
  

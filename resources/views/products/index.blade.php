@@ -16,7 +16,7 @@
 
     {{-- Flash messages --}}
     @if (session('msg'))
-        <div class="mb-5 flash-{{ session('msg') === 'deleted' ? 'error' : 'success' }}">
+        <div id="flash-message" class="mb-5 flash-{{ session('msg') === 'deleted' ? 'error' : 'success' }}">
             {{ session('msg') === 'saved' ? '✓ Product saved.' : '✓ Product deleted.' }}
         </div>
     @endif
@@ -132,4 +132,15 @@
             </table>
         </div>
     </div>
+    <script>
+        setTimeout(() => {
+            const flash = document.getElementById('flash-message');
+            if (flash) {
+                flash.style.transition = "opacity 0.5s ease";
+                flash.style.opacity = "0";
+                
+                setTimeout(() => flash.remove(), 500); // remove after fade
+            }
+        }, 1500); // 3 seconds
+    </script>
 </x-app-layout>
